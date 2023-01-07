@@ -2,18 +2,35 @@ class ProductManager {
     #products = []
   
     constructor() {
-      this.code = 0
+      this.id = 0
     }
   
     getProducts() {
       return this.#products
     }
+    getProductoById(title, id){
+      this.id++
+      const product = {id: this.id,title}
+      const productId = this.#products.find(productId => productId.id === id)
+
+      if (!productId) {
+        
+        this.#products.push(product)
+        return `El producto ${title} se agrego con el id: ${product.id}`
   
-    addProduct(title, description, price, thumbnail, code, stock ) {
-         this.code++
+      } else {
+        
+        return `El producto con el id ${id} ya esta agegado`
+  
+      }
+    }
+    
+  
+    addProduct(title, description, price, thumbnail, code, stock, id ) {
+         this.id++
          
   
-      const product = {code: this.code,title,description,price,thumbnail,stock}
+        const product = { code,title,description,price,thumbnail,stock, id: this.id}
       
   
       const productCode = this.#products.find(productCode => productCode.code === code)
@@ -43,3 +60,6 @@ class ProductManager {
   
   manejadorDeProductos.getProducts()
   console.log(manejadorDeProductos.getProducts());
+
+  manejadorDeProductos.getProductoById()
+  console.log(manejadorDeProductos.getProductoById());
